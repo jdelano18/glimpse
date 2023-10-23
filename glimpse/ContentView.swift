@@ -3,7 +3,7 @@
 //  glimpse
 //
 //  Created by Jimmy DeLano on 10/22/23.
-// 
+//
 
 import SwiftUI
 import SwiftData
@@ -24,13 +24,24 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView {
+                         Label("No Questions", systemImage: "plus.circle")
+                    } description: {
+                         Text("New questions you create will appear here.")
+                    }
                 }
-                ToolbarItem {
+            }
+            .navigationTitle("Weekly Glimpse")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                        .disabled(items.isEmpty)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        Label("Add Item", systemImage: "plus.circle")
                     }
                 }
             }
