@@ -3,7 +3,7 @@
 //  glimpse
 //
 //  Created by Jimmy DeLano on 10/22/23.
-//
+// 
 
 import SwiftUI
 import SwiftData
