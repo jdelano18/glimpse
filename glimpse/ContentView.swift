@@ -10,22 +10,22 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var questions: [Question]
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(items) { item in
+                ForEach(questions) { question in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        Text("Question at \(question.notificationTime, format: Date.FormatStyle(date: .numeric, time: .standard))")
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text(question.title)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
             .overlay {
-                if items.isEmpty {
+                if questions.isEmpty {
                     ContentUnavailableView {
                          Label("No Questions", systemImage: "plus.circle")
                     } description: {
@@ -37,7 +37,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
-                        .disabled(items.isEmpty)
+                        .disabled(questions.isEmpty)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: addItem) {
@@ -52,7 +52,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = Question(title: "Test", yesIsPositive: true, notificationTime: .now)
             modelContext.insert(newItem)
         }
     }
@@ -60,7 +60,7 @@ struct ContentView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(questions[index])
             }
         }
     }
@@ -68,5 +68,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Question.self, inMemory: true)
 }
