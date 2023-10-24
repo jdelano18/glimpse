@@ -17,6 +17,8 @@
 		7990B9D92AE60CED0052C5B6 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9D82AE60CED0052C5B6 /* Question.swift */; };
 		7990B9DB2AE60E740052C5B6 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9DA2AE60E740052C5B6 /* Answer.swift */; };
 		7990B9DD2AE613500052C5B6 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9DC2AE613500052C5B6 /* PreviewSampleData.swift */; };
+		7990B9DF2AE764260052C5B6 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9DE2AE764260052C5B6 /* ModelContainerPreview.swift */; };
+		7990B9E12AE765440052C5B6 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9E02AE765440052C5B6 /* AddQuestionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		7990B9D82AE60CED0052C5B6 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		7990B9DA2AE60E740052C5B6 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		7990B9DC2AE613500052C5B6 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
+		7990B9DE2AE764260052C5B6 /* ModelContainerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
+		7990B9E02AE765440052C5B6 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +106,10 @@
 			children = (
 				7990B9AC2AE6076E0052C5B6 /* glimpseApp.swift */,
 				7990B9DC2AE613500052C5B6 /* PreviewSampleData.swift */,
+				7990B9DE2AE764260052C5B6 /* ModelContainerPreview.swift */,
 				7990B9AE2AE6076E0052C5B6 /* ContentView.swift */,
 				7990B9D82AE60CED0052C5B6 /* Question.swift */,
+				7990B9E02AE765440052C5B6 /* AddQuestionView.swift */,
 				7990B9DA2AE60E740052C5B6 /* Answer.swift */,
 				7990B9B22AE6076F0052C5B6 /* Assets.xcassets */,
 				7990B9B42AE6076F0052C5B6 /* Preview Content */,
@@ -268,8 +274,10 @@
 			files = (
 				7990B9AF2AE6076E0052C5B6 /* ContentView.swift in Sources */,
 				7990B9D92AE60CED0052C5B6 /* Question.swift in Sources */,
+				7990B9E12AE765440052C5B6 /* AddQuestionView.swift in Sources */,
 				7990B9DD2AE613500052C5B6 /* PreviewSampleData.swift in Sources */,
 				7990B9DB2AE60E740052C5B6 /* Answer.swift in Sources */,
+				7990B9DF2AE764260052C5B6 /* ModelContainerPreview.swift in Sources */,
 				7990B9AD2AE6076E0052C5B6 /* glimpseApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,8 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var questions: [Question]
+    
+    @State private var showAddQuestion = false
 
     var body: some View {
         NavigationSplitView {
@@ -40,13 +42,21 @@ struct ContentView: View {
                         .disabled(questions.isEmpty)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: addItem) {
+                    Button {
+                        showAddQuestion = true
+                    } label: {
                         Label("Add Item", systemImage: "plus.circle")
                     }
                 }
             }
         } detail: {
             Text("Select an item")
+        }
+        .sheet(isPresented: $showAddQuestion) {
+            NavigationStack {
+                AddQuestionView()
+            }
+            .presentationDetents([.medium, .large])
         }
     }
 
@@ -68,5 +78,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Question.self, inMemory: true)
+        .modelContainer(PreviewSampleData.container)
 }
