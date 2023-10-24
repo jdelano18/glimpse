@@ -13,10 +13,12 @@ struct ContentView: View {
     @Query private var questions: [Question]
     
     @State private var showAddQuestion = false
+    @State private var selection: Question?
+    // TODO: selection --> QuestionDetailView()
 
     var body: some View {
         NavigationSplitView {
-            List {
+            List(selection: $selection) {
                 ForEach(questions) { question in
                     NavigationLink {
                         Text("Question at \(question.notificationTime, format: Date.FormatStyle(date: .numeric, time: .standard))")
@@ -24,7 +26,7 @@ struct ContentView: View {
                         Text(question.title)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteItems(at:))
             }
             .overlay {
                 if questions.isEmpty {
@@ -67,7 +69,7 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteItems(at offsets: IndexSet) {
         withAnimation {
             for index in offsets {
                 modelContext.delete(questions[index])

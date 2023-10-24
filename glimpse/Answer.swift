@@ -9,7 +9,8 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-@Model final class Answer {
+@Model final class Answer: Identifiable {
+    var id = UUID()
     var date: Date
     var response: Int   // 1: yes, 0: no, -1: missing
     
@@ -34,8 +35,9 @@ import SwiftUI
     }
     
     var question: Question?
-    
-    init(date: Date, response: Int, question: Question? = nil) {
+
+    init(id: UUID = UUID(), date: Date, response: Int, question: Question? = nil) {
+        self.id = id
         self.date = date
         self.response = response
         self.question = question
@@ -44,10 +46,8 @@ import SwiftUI
 
 extension Answer {
     static var preview: Answer {
-        let answer = Answer(
-            date: .now,
-            response: 1)
-        answer.question = .preview
+        let answer = Answer(date: .now, response: 1)
+//        answer.question = .preview
         return answer
     }
 }

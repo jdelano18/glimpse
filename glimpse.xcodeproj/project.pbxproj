@@ -19,6 +19,7 @@
 		7990B9DD2AE613500052C5B6 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9DC2AE613500052C5B6 /* PreviewSampleData.swift */; };
 		7990B9DF2AE764260052C5B6 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9DE2AE764260052C5B6 /* ModelContainerPreview.swift */; };
 		7990B9E12AE765440052C5B6 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9E02AE765440052C5B6 /* AddQuestionView.swift */; };
+		7990B9E52AE773920052C5B6 /* GlimpseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9E42AE773920052C5B6 /* GlimpseListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		7990B9DC2AE613500052C5B6 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		7990B9DE2AE764260052C5B6 /* ModelContainerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
 		7990B9E02AE765440052C5B6 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
+		7990B9E42AE773920052C5B6 /* GlimpseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlimpseListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				7990B9DC2AE613500052C5B6 /* PreviewSampleData.swift */,
 				7990B9DE2AE764260052C5B6 /* ModelContainerPreview.swift */,
 				7990B9AE2AE6076E0052C5B6 /* ContentView.swift */,
+				7990B9E42AE773920052C5B6 /* GlimpseListItem.swift */,
 				7990B9D82AE60CED0052C5B6 /* Question.swift */,
 				7990B9E02AE765440052C5B6 /* AddQuestionView.swift */,
 				7990B9DA2AE60E740052C5B6 /* Answer.swift */,
@@ -276,6 +279,7 @@
 				7990B9D92AE60CED0052C5B6 /* Question.swift in Sources */,
 				7990B9E12AE765440052C5B6 /* AddQuestionView.swift in Sources */,
 				7990B9DD2AE613500052C5B6 /* PreviewSampleData.swift in Sources */,
+				7990B9E52AE773920052C5B6 /* GlimpseListItem.swift in Sources */,
 				7990B9DB2AE60E740052C5B6 /* Answer.swift in Sources */,
 				7990B9DF2AE764260052C5B6 /* ModelContainerPreview.swift in Sources */,
 				7990B9AD2AE6076E0052C5B6 /* glimpseApp.swift in Sources */,
