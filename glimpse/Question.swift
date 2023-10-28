@@ -40,29 +40,19 @@ import SwiftUI
 }
 
 extension Question {
-    @Transient
-    var displayName: String {
-        title.isEmpty ? "Sample Question" : title
-    }
-    
-    static var sampleAnswers: [Answer] {
-        [
-            Answer(date: Date(), response: 1),
-            Answer(date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, response: 0),
-            Answer(date: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, response: 1),
-            Answer(date: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, response: -1),
-            Answer(date: Calendar.current.date(byAdding: .day, value: -4, to: Date())!, response: 1)
-        ]
-    }
-    
     static var preview: Question {
-        let q = Question(title: "If today was the last day of your life, would you want to do what you are about to do?",
-                 yesIsPositive: true,
-                 notificationTime: .now)
-        q.answers = sampleAnswers
-        return q
+//        let sampleAnswer = Answer.preview
+        let sampleQuestion = Question(
+            title: "If today was the last day of your life, would you want to do what you are about to do?",
+//            answers: [sampleAnswer], // Attach the sample answer here
+            yesIsPositive: true,
+            notificationTime: Date()
+        )
+//        sampleAnswer.question = sampleQuestion
+        return sampleQuestion
     }
 }
+
 
 //extension Date {
 //    static func lastWeekDates() -> [Date] {

@@ -47,7 +47,7 @@ import SwiftUI
 extension Answer {
     static var preview: Answer {
         let answer = Answer(date: .now, response: 1)
-//        answer.question = .preview
+        answer.question = .preview
         return answer
     }
 }

@@ -11,15 +11,17 @@ struct GlimpseListItem: View {
     var question: Question
     
     var body: some View {
-        NavigationLink(value: question){
-            VStack(alignment: .leading) {
+        NavigationLink(value: question) {
+            VStack {
                 Text(question.title)
                     .font(.headline)
                 HStack {
-                    Text("sup")
-//                    ForEach(question.answers) { answer in
-//                        Text("Answer is \(answer.response)")
-//                    }
+                    Text("Number of answers: \(question.answers.count)")
+
+                    ForEach(question.answers) { answer in
+                        Text("sup")
+                        Text("Answer is \(answer.response)")
+                    }
                 }
             }
         }
