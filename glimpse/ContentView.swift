@@ -4,6 +4,9 @@
 //
 //  Created by Jimmy DeLano on 10/22/23.
 //
+// TODO: answer view
+// answer button
+// notifications for answers
 
 import SwiftUI
 import SwiftData

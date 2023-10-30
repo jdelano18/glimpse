@@ -3,7 +3,7 @@
 //  glimpse
 //
 //  Created by Jimmy DeLano on 10/29/23.
-//
+// TODO: add title, streak, weekend positive % vs weekday positive %
 
 import SwiftUI
 import SwiftData
