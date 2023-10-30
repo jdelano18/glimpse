@@ -34,6 +34,7 @@ import SwiftUI
         return ""
     }
     
+    @Relationship(deleteRule: .cascade, inverse: \Question.answers)
     var question: Question?
 
     init(id: UUID = UUID(), date: Date, response: Int, question: Question? = nil) {
@@ -51,3 +52,20 @@ extension Answer {
         return answer
     }
 }
+
+//extension Answer {
+//    static var sampleAnswers: [Answer] {
+//        var samples: [Answer] = []
+//        
+//        for dayOffset in 0..<10 {
+//            let date = Calendar.current.date(byAdding: .day, value: -dayOffset, to: Date())!
+//            let randomResponse = Int.random(in: -1...1) // generate random response for diversity
+//            let sampleAnswer = Answer(date: date, response: randomResponse)
+//            
+//            samples.append(sampleAnswer)
+//        }
+//        
+//        return samples
+//    }
+//}
+

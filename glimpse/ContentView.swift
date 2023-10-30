@@ -14,17 +14,19 @@ struct ContentView: View {
     
     @State private var showAddQuestion = false
     @State private var selection: Question?
-    // TODO: selection --> QuestionDetailView()
 
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
                 ForEach(questions) { question in
-                    NavigationLink {
-                        Text("Question at \(question.notificationTime, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(question.title)
-                    }
+                    GlimpseListItem(question: question)
+                        .swipeActions(edge: .trailing){
+                            Button(role: .destructive){
+                                deleteItem(question)
+                            } label: {
+                                Label("Delete", systemImage:"trash")
+                            }
+                        }
                 }
                 .onDelete(perform: deleteItems(at:))
             }
@@ -52,7 +54,11 @@ struct ContentView: View {
                 }
             }
         } detail: {
-            Text("Select an item")
+            if let selection = selection {
+                NavigationStack {
+                    GlimpseDetailView(question: selection)
+                }
+            }
         }
         .sheet(isPresented: $showAddQuestion) {
             NavigationStack {
@@ -75,6 +81,13 @@ struct ContentView: View {
                 modelContext.delete(questions[index])
             }
         }
+    }
+    
+    private func deleteItem(_ question: Question){
+        if question.persistentModelID == selection?.persistentModelID {
+            selection = nil
+        }
+        modelContext.delete(question)
     }
 }
 
