@@ -17,19 +17,6 @@ import SwiftUI
     
     var answers: [Answer]?
     
-//    var streak: Int {
-//        var streakCount = 0
-//        let positiveResponse: Int = yesIsPositive ? 1 : 0
-//        
-//        for answer in answers.reversed() {
-//            if answer.response == positiveResponse {
-//                streakCount += 1
-//            } else {
-//                break
-//            }
-//        }
-//        return streakCount
-//    }
     
     init(title: String, answers: [Answer] = [], yesIsPositive: Bool, notificationTime: Date) {
         self.title = title

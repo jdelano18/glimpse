@@ -13,7 +13,8 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var questions: [Question]
+    @Query(sort: \Question.title, order:.forward)
+    var questions: [Question]
     
     @State private var showAddQuestion = false
     @State private var selection: Question?

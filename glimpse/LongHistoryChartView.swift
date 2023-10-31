@@ -24,7 +24,7 @@ struct LongHistoryChartView: View {
             VStack(spacing: 5) {
                 // Days of the Week Labels
                 HStack {
-                    ForEach(["M", "T", "W", "T", "F", "S", "S"], id: \.self) { day in
+                    ForEach(getWeekdaysOrderedByCurrentDay(), id: \.self) { day in
                         Text(day)
                             .frame(width: 20)
                     }
@@ -75,6 +75,12 @@ func getLastSixMonthYearLabels() -> [String] {
         }
     }
     return monthYearLabels.reversed()
+}
+
+func getWeekdaysOrderedByCurrentDay() -> [String] {
+    let daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]
+    let currentIndex = Calendar.current.component(.weekday, from: Date()) % 7 // Get current weekday
+    return Array(daysOfWeek[currentIndex...] + daysOfWeek[..<currentIndex])
 }
 
 #Preview {
