@@ -36,4 +36,3 @@ extension Question {
         return sampleQuestion
     }
 }
-

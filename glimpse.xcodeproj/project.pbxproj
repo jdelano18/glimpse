@@ -22,7 +22,7 @@
 		7990B9E52AE773920052C5B6 /* GlimpseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9E42AE773920052C5B6 /* GlimpseListItem.swift */; };
 		7990B9F22AEF668A0052C5B6 /* GlimpseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9F12AEF668A0052C5B6 /* GlimpseDetailView.swift */; };
 		7990B9F42AEF68B00052C5B6 /* LongHistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9F32AEF68B00052C5B6 /* LongHistoryChartView.swift */; };
-		7990B9F72AF0AFC60052C5B6 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9F62AF0AFC60052C5B6 /* AnswerView.swift */; };
+		7990B9F92AF5FAD10052C5B6 /* AddAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990B9F82AF5FAD10052C5B6 /* AddAnswerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,7 @@
 		7990B9E42AE773920052C5B6 /* GlimpseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlimpseListItem.swift; sourceTree = "<group>"; };
 		7990B9F12AEF668A0052C5B6 /* GlimpseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlimpseDetailView.swift; sourceTree = "<group>"; };
 		7990B9F32AEF68B00052C5B6 /* LongHistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongHistoryChartView.swift; sourceTree = "<group>"; };
-		7990B9F62AF0AFC60052C5B6 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		7990B9F82AF5FAD10052C5B6 /* AddAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnswerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +122,9 @@
 				7990B9DA2AE60E740052C5B6 /* Answer.swift */,
 				7990B9F12AEF668A0052C5B6 /* GlimpseDetailView.swift */,
 				7990B9F32AEF68B00052C5B6 /* LongHistoryChartView.swift */,
-				7990B9F62AF0AFC60052C5B6 /* AnswerView.swift */,
 				7990B9B22AE6076F0052C5B6 /* Assets.xcassets */,
 				7990B9B42AE6076F0052C5B6 /* Preview Content */,
+				7990B9F82AF5FAD10052C5B6 /* AddAnswerView.swift */,
 			);
 			path = glimpse;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 				7990B9DD2AE613500052C5B6 /* PreviewSampleData.swift in Sources */,
 				7990B9E52AE773920052C5B6 /* GlimpseListItem.swift in Sources */,
 				7990B9DB2AE60E740052C5B6 /* Answer.swift in Sources */,
-				7990B9F72AF0AFC60052C5B6 /* AnswerView.swift in Sources */,
+				7990B9F92AF5FAD10052C5B6 /* AddAnswerView.swift in Sources */,
 				7990B9DF2AE764260052C5B6 /* ModelContainerPreview.swift in Sources */,
 				7990B9F42AEF68B00052C5B6 /* LongHistoryChartView.swift in Sources */,
 				7990B9AD2AE6076E0052C5B6 /* glimpseApp.swift in Sources */,

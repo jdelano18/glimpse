@@ -48,7 +48,6 @@ struct AddQuestionView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button("Done") {
                     addQuestion()
-//                    WidgetCenter.shared.reloadTimelines(ofKind: "TripsWidget")
                     dismiss()
                 }
                 .disabled(title.isEmpty)
