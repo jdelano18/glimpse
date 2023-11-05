@@ -4,9 +4,7 @@
 //
 //  Created by Jimmy DeLano on 10/22/23.
 //
-// TODO: answer view
-// answer button
-// notifications for answers
+// TODO: notifications for answers
 
 import SwiftUI
 import SwiftData
@@ -17,6 +15,7 @@ struct ContentView: View {
     var questions: [Question]
     
     @State private var showAddQuestion = false
+    @State private var showAddAnswers = false
     @State private var selection: Question?
 
     var body: some View {
@@ -49,6 +48,14 @@ struct ContentView: View {
                     EditButton()
                         .disabled(questions.isEmpty)
                 }
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button {
+                        showAddAnswers = true
+                    } label: {
+                        Label("Add Answer", systemImage: "pencil.and.list.clipboard")
+                    }
+                    .disabled(questions.isEmpty)
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showAddQuestion = true
@@ -63,6 +70,12 @@ struct ContentView: View {
                     GlimpseDetailView(question: selection)
                 }
             }
+        }
+        .sheet(isPresented: $showAddAnswers){
+            NavigationStack {
+                AddAnswersForm(questions: questions)
+            }
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $showAddQuestion) {
             NavigationStack {
