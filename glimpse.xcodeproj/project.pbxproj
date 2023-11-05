@@ -64,6 +64,7 @@
 		7990B9F32AEF68B00052C5B6 /* LongHistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongHistoryChartView.swift; sourceTree = "<group>"; };
 		7990B9F82AF5FAD10052C5B6 /* AddAnswersForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnswersForm.swift; sourceTree = "<group>"; };
 		7990B9FA2AF83E120052C5B6 /* AddAnswerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnswerItem.swift; sourceTree = "<group>"; };
+		7990B9FC2AF84B230052C5B6 /* next-steps.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "next-steps.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		7990B9A02AE6076E0052C5B6 = {
 			isa = PBXGroup;
 			children = (
+				7990B9FC2AF84B230052C5B6 /* next-steps.md */,
 				7990B9AB2AE6076E0052C5B6 /* glimpse */,
 				7990B9BE2AE6076F0052C5B6 /* glimpseTests */,
 				7990B9C82AE6076F0052C5B6 /* glimpseUITests */,
