@@ -47,9 +47,8 @@ import SwiftUI
 
 extension Answer {
     static var preview: Answer {
-        let answer = Answer(date: .now, response: 1)
+        let answer = Answer(date: Date().addingTimeInterval(-86400), response: 1)
         answer.question = .preview
         return answer
     }
 }
-

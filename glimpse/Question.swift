@@ -10,7 +10,6 @@ import SwiftData
 import SwiftUI
 
 @Model final class Question {
-    var id: UUID
     @Attribute(.unique)
     var title: String
     var yesIsPositive: Bool
@@ -19,8 +18,7 @@ import SwiftUI
     var answers: [Answer]?
     
     
-    init(id:UUID = UUID(), title: String, answers: [Answer] = [], yesIsPositive: Bool, notificationTime: Date) {
-        self.id = id
+    init(title: String, answers: [Answer] = [], yesIsPositive: Bool, notificationTime: Date) {
         self.title = title
         self.answers = answers
         self.yesIsPositive = yesIsPositive

@@ -22,7 +22,7 @@ struct ContentView: View {
         NavigationSplitView {
             List(selection: $selection) {
                 ForEach(questions) { question in
-                    GlimpseListItem(question: question)
+                    GlimpseListItem(selectedQuestion: question)
                         .swipeActions(edge: .trailing){
                             Button(role: .destructive){
                                 deleteItem(question)

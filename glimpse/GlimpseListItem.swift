@@ -9,24 +9,43 @@ import SwiftUI
 import SwiftData
 
 struct GlimpseListItem: View {
-    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @Query private var answers: [Answer]
-    
-    var question: Question
+    var selectedQuestion: Question
 
+    @Query(
+        sort: [
+            SortDescriptor(\Answer.date, order: .reverse)
+        ]
+    ) var answers: [Answer]
+    
+    private var filteredAnswers: [Answer] {
+        return answers.compactMap { answer in
+            guard let question = answer.question else {
+                return nil
+            }
+            return question == selectedQuestion ? answer : nil
+        }
+    }
     
     var body: some View {
-        NavigationLink(value: question) {
+        NavigationLink(value: selectedQuestion) {
             VStack {
-                Text(question.title)
+                Text(selectedQuestion.title)
                     .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    if answers.isEmpty {
-                        ContentUnavailableView("No Answers Yet!", systemImage: "icloud.slash")
+                    if filteredAnswers.isEmpty {
+                        VStack {
+                            Image(systemName: "icloud.slash")
+                                .imageScale(.large)
+                                .foregroundColor(.secondary)
+                            Text("No Answers Yet!")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                        }
                     } else {
                         ForEach(Date.last7Days, id: \.self) { date in
-                            if let answer = answers.first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
+                            if let answer = filteredAnswers.first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
                                 VStack {
                                     Rectangle()
                                         .fill(answer.color)
@@ -34,10 +53,10 @@ struct GlimpseListItem: View {
                                     Text(answer.dayOfWeekShort)
                                         .font(.caption)
                                 }
-                            } else {
+                            } else { // missing answer, gray box
                                 VStack {
                                     Rectangle()
-                                        .fill(Color.gray) // default color for missing data
+                                        .fill(Color.gray)
                                         .frame(width: 30, height: 30)
                                     Text(getShortDayOfWeek(from: date))
                                         .font(.caption)
@@ -46,8 +65,10 @@ struct GlimpseListItem: View {
                         }
                     }
                 }
+                .frame(maxWidth: .infinity)
             }
         }
+        .frame(maxWidth: .infinity)
     }
     
     func getShortDayOfWeek(from date: Date) -> String {
@@ -78,7 +99,7 @@ extension Date {
 #Preview {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer){
         List {
-            GlimpseListItem(question: .preview)
+            GlimpseListItem(selectedQuestion: .preview)
         }
     }
 }
