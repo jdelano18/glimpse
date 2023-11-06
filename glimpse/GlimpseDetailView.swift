@@ -71,20 +71,23 @@ struct GlimpseDetailView: View {
             VStack{
                 Text(selectedQuestion.title)
                     .font(.headline)
-                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
                 HStack{
                     Text("🔥 \n \(streak) days")
                         .font(otherFont)
-                        .multilineTextAlignment(.center)
+                        .lineLimit(nil)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     Spacer()
                     Text("Weekdays: \n \(Int(weekdayPositivePercentage))%")
                         .font(otherFont)
-                        .multilineTextAlignment(.center)
+                        .lineLimit(nil)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     Spacer()
                     Text("Weekends: \n \(Int(weekendPositivePercentage))%")
                         .font(otherFont)
-                        .multilineTextAlignment(.center)
+                        .lineLimit(nil)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                 }
             }
             .padding()
