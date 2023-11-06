@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct GlimpseListItem: View {
-    @Environment(\.modelContext) private var modelContext
     var selectedQuestion: Question
 
     @Query(

@@ -1,10 +1,11 @@
 #  TODOs:
 
-### Filtering Answers by Question
-* All of the views that use a question need to have a filtered applied for which question that is. Right now, the Query property is returning all answers, not tied to any specific question. Here's some links i'm looking at
-* https://www.swiftyplace.com/blog/fetch-and-filter-in-swiftdata 
-* https://stackoverflow.com/questions/77039981/swiftdata-query-with-predicate-on-relationship-model
+### Figure out how to do sample data question with answers linked
+* Im stuck on doing this. not sure how. but it makes it a real pita when my sample questions filter out the answers and there are none on the preview
+* this has to be done next its super annoying and i'm stuck on it rn
 
+### GlimpseDetailView dates arent lining up after filtering by correct question.
+* *sigh*
 
 ### Send user a notification to answer:
 * https://www.youtube.com/watch?v=eI7jYIY5Ie4&ab_channel=Indently

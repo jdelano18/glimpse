@@ -9,21 +9,35 @@ import SwiftUI
 import SwiftData
 
 struct GlimpseDetailView: View {
-    @Query private var answers: [Answer]
-    var question: Question
+    var selectedQuestion: Question
+
+    @Query(
+        sort: [
+            SortDescriptor(\Answer.date, order: .reverse)
+        ]
+    ) var answers: [Answer]
+    
+    private var filteredAnswers: [Answer] {
+        return answers.compactMap { answer in
+            guard let question = answer.question else {
+                return nil
+            }
+            return question == selectedQuestion ? answer : nil
+        }
+    }
     
     var lastSixMonthsAnswers: [Answer] {
         let sixMonthsAgo = Calendar.current.date(byAdding: .month, value: -6, to: Date()) ?? Date()
-        return answers.filter { $0.date >= sixMonthsAgo }.sorted { $0.date < $1.date }
+        return filteredAnswers.filter { $0.date >= sixMonthsAgo }.sorted { $0.date < $1.date }
     }
     
     var streak: Int {
-        guard let latestDate = answers.last?.date else { return 0 }
+        guard let latestDate = filteredAnswers.last?.date else { return 0 }
         var currentStreak = 0
         var currentDate = Date()
         
         while currentDate >= latestDate {
-            if answers.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: currentDate) }) {
+            if filteredAnswers.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: currentDate) }) {
                 currentStreak += 1
             } else {
                 break
@@ -35,18 +49,18 @@ struct GlimpseDetailView: View {
     }
 
     var weekdayPositivePercentage: Double {
-        let weekdayAnswers = answers.filter { $0.date.isWeekday }
+        let weekdayAnswers = filteredAnswers.filter { $0.date.isWeekday }
         guard !weekdayAnswers.isEmpty else { return 0.0 }
         
-        let positiveWeekdayAnswers = weekdayAnswers.filter { $0.response == (question.yesIsPositive ? 1 : 0) }
+        let positiveWeekdayAnswers = weekdayAnswers.filter { $0.response == (selectedQuestion.yesIsPositive ? 1 : 0) }
         return Double(positiveWeekdayAnswers.count) / Double(weekdayAnswers.count) * 100.0
     }
 
     var weekendPositivePercentage: Double {
-        let weekendAnswers = answers.filter { !$0.date.isWeekday }
+        let weekendAnswers = filteredAnswers.filter { !$0.date.isWeekday }
         guard !weekendAnswers.isEmpty else { return 0.0 }
         
-        let positiveWeekendAnswers = weekendAnswers.filter { $0.response == (question.yesIsPositive ? 1 : 0) }
+        let positiveWeekendAnswers = weekendAnswers.filter { $0.response == (selectedQuestion.yesIsPositive ? 1 : 0) }
         return Double(positiveWeekendAnswers.count) / Double(weekendAnswers.count) * 100.0
     }
 
@@ -55,7 +69,7 @@ struct GlimpseDetailView: View {
         let otherFont = Font.body.lowercaseSmallCaps()
         Section {
             VStack{
-                Text(question.title)
+                Text(selectedQuestion.title)
                     .font(.headline)
                     .multilineTextAlignment(.center)
                 Spacer()
@@ -91,7 +105,7 @@ extension Date {
 #Preview {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer){
         List {
-            GlimpseDetailView(question: .preview)
+            GlimpseDetailView(selectedQuestion: .preview)
         }
     }
 }
