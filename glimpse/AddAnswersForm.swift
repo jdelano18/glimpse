@@ -63,7 +63,6 @@ struct AddAnswersForm: View {
 }
 
 
-// Don't forget to implement a preview for AddAnswersForm as well
 #Preview {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         AddAnswersForm(questions: [.preview])

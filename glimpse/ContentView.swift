@@ -67,7 +67,9 @@ struct ContentView: View {
         } detail: {
             if let selection = selection {
                 NavigationStack {
-                    GlimpseDetailView(selectedQuestion: selection)
+                    VStack {
+                        GlimpseDetailView2(selectedQuestion: selection)
+                    }
                 }
             }
         }
