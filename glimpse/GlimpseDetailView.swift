@@ -68,31 +68,41 @@ struct GlimpseDetailView: View {
     var body: some View {
         let otherFont = Font.body.lowercaseSmallCaps()
         Section {
-            VStack{
-                Text(selectedQuestion.title)
-                    .font(.headline)
+            VStack (alignment: .leading, spacing: 10){
+                Text("Monthly Glimpse")
+                    .font(.title2).bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Spacer()
-                HStack{
-                    Text("🔥 \n \(streak) days")
-                        .font(otherFont)
-                        .lineLimit(nil)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                    Spacer()
-                    Text("Weekdays: \n \(Int(weekdayPositivePercentage))%")
-                        .font(otherFont)
-                        .lineLimit(nil)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                    Spacer()
-                    Text("Weekends: \n \(Int(weekendPositivePercentage))%")
-                        .font(otherFont)
-                        .lineLimit(nil)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                    .fixedSize(horizontal: false, vertical:     true)
+                    .padding(.vertical)
+                Text(selectedQuestion.title)
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("🔥")
+                        Text("\(streak) days")
+                            .lineLimit(1)
+                    }
+                    .font(otherFont)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    VStack(alignment: .center) {
+                        Text("Weekdays:")
+                        Text("\(Int(weekdayPositivePercentage))%").lineLimit(1)
+                    }
+                    .font(otherFont)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                                        
+                    VStack(alignment: .trailing) {
+                        Text("Weekends:")
+                        Text("\(Int(weekendPositivePercentage))%").lineLimit(1)
+                    }
+                    .font(otherFont)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
             .padding()
         }
-        Section{
+        Section {
             LongHistoryChartView(answers: lastSixMonthsAnswers, monthYearLabels: getLastSixMonthYearLabels())
         }
     }
