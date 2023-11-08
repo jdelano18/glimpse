@@ -28,29 +28,27 @@ struct AddAnswersForm: View {
     }
 
     var body: some View {
-        NavigationView {
-            List {
-                if unansweredQuestions.isEmpty {
-                    Text("You've already answered all your questions for today.")
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                } else {
-                    ForEach(unansweredQuestions) { question in
-                        AddAnswerItem(question: question, response: $responses[question])
-                    }
+        List {
+            if unansweredQuestions.isEmpty {
+                Text("You've already answered all your questions for today.")
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            } else {
+                ForEach(unansweredQuestions) { question in
+                    AddAnswerItem(question: question, response: $responses[question])
                 }
             }
-            .navigationTitle("Add Answers")
-            .navigationBarItems(
-                leading: Button("Dismiss") {
-                    dismiss()
-                },
-                trailing: Button("Done") {
-                    saveAllAnswers()
-                    dismiss()
-                }.disabled(unansweredQuestions.isEmpty)
-            )
         }
+        .navigationTitle("Add Answers")
+        .navigationBarItems(
+            leading: Button("Dismiss") {
+                dismiss()
+            },
+            trailing: Button("Done") {
+                saveAllAnswers()
+                dismiss()
+            }.disabled(unansweredQuestions.isEmpty)
+        )
     }
 
     private func saveAllAnswers() {

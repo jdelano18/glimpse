@@ -34,14 +34,10 @@ struct GlimpseListItem: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
                     if filteredAnswers.isEmpty {
-                        VStack {
-                            Image(systemName: "icloud.slash")
-                                .imageScale(.large)
-                                .foregroundColor(.secondary)
-                            Text("No Answers Yet!")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                        }
+                        Text("No Answers Yet!")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .padding(3)
                     } else {
                         ForEach(Date.last7Days, id: \.self) { date in
                             if let answer = filteredAnswers.first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {

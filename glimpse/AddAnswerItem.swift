@@ -20,16 +20,19 @@ struct AddAnswerItem: View {
             // Checkmark for "Yes"
             Image(systemName: "checkmark.circle.fill")
                 .foregroundColor(response == true ? .green : .gray)
+                .imageScale(.large)
                 .onTapGesture {
                     response = true
                 }
             // Xmark for "No"
             Image(systemName: "xmark.circle.fill")
                 .foregroundColor(response == false ? .red : .gray)
+                .imageScale(.large)
                 .onTapGesture {
                     response = false
                 }
         }
+        .padding(.vertical)
     }
 }
 

@@ -12,6 +12,34 @@ struct LongHistoryChartView: View {
     let answers: [Answer]
     let monthYearLabels: [String]
     
+    func getAnswer(for index: Int) -> Answer {
+        let calendar = Calendar.current
+        let endDate = Date() // The end date is today
+        let dateForIndex = calendar.date(byAdding: .day, value: -index, to: endDate)!
+
+        if let answerIndex = answers.firstIndex(where: { calendar.isDate($0.date, inSameDayAs: dateForIndex) }) {
+            return answers[answerIndex]
+        }
+        return Answer(date: dateForIndex, response: -1)  // Default answer
+    }
+    
+    func calculateAverage(for dayIndex: Int) -> String {
+        let weekdayIndex = (Calendar.current.component(.weekday, from: Date()) - dayIndex + 7) % 7
+        let filteredAnswers = answers.filter {
+            Calendar.current.component(.weekday, from: $0.date) == (weekdayIndex == 0 ? 7 : weekdayIndex)
+        }
+        
+        let totalPositiveResponses = filteredAnswers.reduce(0) { $0 + ($1.response == 1 ? 1 : 0) }
+        
+        if filteredAnswers.isEmpty {
+            return "--" // No data
+        } else {
+            let average = Double(totalPositiveResponses) / Double(filteredAnswers.count)
+            let percent = Int(average * 100)
+            return "\(percent)%" // Percentage without decimal places
+        }
+    }
+    
     var body: some View {
         HStack {
             // Month Labels
@@ -21,12 +49,17 @@ struct LongHistoryChartView: View {
                 }
             }
             
-            VStack(spacing: 5) {
+            VStack(spacing: 10) {
                 // Days of the Week Labels
                 HStack {
-                    ForEach(getWeekdaysOrderedByCurrentDay(), id: \.self) { day in
-                        Text(day)
-                            .frame(width: 20)
+                    ForEach(Array(stride(from: 6, through: 0, by: -1)), id: \.self) { dayIndex in
+                        VStack {
+                            Text(getWeekdaysOrderedByCurrentDay()[dayIndex])
+                                .frame(width: 20)
+                            Text(calculateAverage(for: dayIndex))
+                                .font(.caption)
+                                .frame(width: 20)
+                        }
                     }
                 }
                 
@@ -45,27 +78,7 @@ struct LongHistoryChartView: View {
         }
         .padding()
     }
-    func getAnswer(for index: Int) -> Answer {
-        let calendar = Calendar.current
-        let endDate = Date() // The end date is today
-        let dateForIndex = calendar.date(byAdding: .day, value: -index, to: endDate)!
 
-        if let answerIndex = answers.firstIndex(where: { calendar.isDate($0.date, inSameDayAs: dateForIndex) }) {
-            return answers[answerIndex]
-        }
-        return Answer(date: dateForIndex, response: -1)  // Default answer
-    }
-
-//    func getAnswer(for index: Int) -> Answer {
-//        let weeklyIndex = index / 7 * 7
-//        let dayIndex = index % 7
-//        let adjustedIndex = weeklyIndex + (6 - dayIndex)
-//
-//        if adjustedIndex < answers.count {
-//            return answers[answers.count - 1 - adjustedIndex]
-//        }
-//        return Answer(date: Date(), response: -1)  // Default answer
-//    }
 }
 
 func getLastSixMonthYearLabels() -> [String] {
