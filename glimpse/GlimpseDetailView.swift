@@ -83,8 +83,13 @@ struct GlimpseDetailView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("🔥")
-                    Text("\(streak) days")
-                        .lineLimit(1)
+                    if (streak == 1){
+                        Text("\(streak) day")
+                            .lineLimit(1)
+                    } else {
+                        Text("\(streak) days")
+                            .lineLimit(1)
+                    }
                 }
                 .font(otherFont)
                 .frame(maxWidth: .infinity, alignment: .leading)
