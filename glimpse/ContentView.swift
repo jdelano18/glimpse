@@ -4,7 +4,6 @@
 //
 //  Created by Jimmy DeLano on 10/22/23.
 //
-// TODO: notifications for answers
 
 import SwiftUI
 import SwiftData
@@ -68,7 +67,7 @@ struct ContentView: View {
             if let selection = selection {
                 NavigationStack {
                     VStack {
-                        GlimpseDetailView2(selectedQuestion: selection)
+                        GlimpseDetailView(selectedQuestion: selection)
                     }
                 }
             }

@@ -33,7 +33,7 @@ struct LongHistoryChartView: View {
                 // Answers Data
                 ForEach(0..<24) { weekIndex in
                     HStack {
-                        ForEach(0..<7) { dayIndex in
+                        ForEach(Array(stride(from: 6, through: 0, by: -1)), id: \.self) { dayIndex in
                             let answer = getAnswer(for: weekIndex * 7 + dayIndex)
                             Rectangle()
                                 .fill(answer.color)
@@ -45,17 +45,27 @@ struct LongHistoryChartView: View {
         }
         .padding()
     }
-    
     func getAnswer(for index: Int) -> Answer {
-        let weeklyIndex = index / 7 * 7
-        let dayIndex = index % 7
-        let adjustedIndex = weeklyIndex + (6 - dayIndex)
+        let calendar = Calendar.current
+        let endDate = Date() // The end date is today
+        let dateForIndex = calendar.date(byAdding: .day, value: -index, to: endDate)!
 
-        if adjustedIndex < answers.count {
-            return answers[answers.count - 1 - adjustedIndex]
+        if let answerIndex = answers.firstIndex(where: { calendar.isDate($0.date, inSameDayAs: dateForIndex) }) {
+            return answers[answerIndex]
         }
-        return Answer(date: Date(), response: -1)  // Default answer
+        return Answer(date: dateForIndex, response: -1)  // Default answer
     }
+
+//    func getAnswer(for index: Int) -> Answer {
+//        let weeklyIndex = index / 7 * 7
+//        let dayIndex = index % 7
+//        let adjustedIndex = weeklyIndex + (6 - dayIndex)
+//
+//        if adjustedIndex < answers.count {
+//            return answers[answers.count - 1 - adjustedIndex]
+//        }
+//        return Answer(date: Date(), response: -1)  // Default answer
+//    }
 }
 
 func getLastSixMonthYearLabels() -> [String] {

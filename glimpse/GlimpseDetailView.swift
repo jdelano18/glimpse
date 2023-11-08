@@ -2,8 +2,8 @@
 //  GlimpseDetailView.swift
 //  glimpse
 //
-//  Created by Jimmy DeLano on 10/29/23.
-
+//  Created by Jimmy DeLano on 11/6/23.
+//
 
 import SwiftUI
 import SwiftData
@@ -66,43 +66,44 @@ struct GlimpseDetailView: View {
 
     
     var body: some View {
+        List {
+            glimpseInfoView()
+        }
+        .navigationTitle(Text("Monthly Glimpse"))
+    }
+    
+    @ViewBuilder
+    private func glimpseInfoView() -> some View {
         let otherFont = Font.body.lowercaseSmallCaps()
-        Section {
-            VStack (alignment: .leading, spacing: 10){
-                Text("Monthly Glimpse")
-                    .font(.title2).bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical:     true)
-                    .padding(.vertical)
-                Text(selectedQuestion.title)
-                
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("🔥")
-                        Text("\(streak) days")
-                            .lineLimit(1)
-                    }
-                    .font(otherFont)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    VStack(alignment: .center) {
-                        Text("Weekdays:")
-                        Text("\(Int(weekdayPositivePercentage))%").lineLimit(1)
-                    }
-                    .font(otherFont)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                                        
-                    VStack(alignment: .trailing) {
-                        Text("Weekends:")
-                        Text("\(Int(weekendPositivePercentage))%").lineLimit(1)
-                    }
-                    .font(otherFont)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+        VStack(alignment: .leading) {
+            Text(selectedQuestion.title)
+                .font(.headline)
+                .padding(.vertical)
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("🔥")
+                    Text("\(streak) days")
+                        .lineLimit(1)
                 }
+                .font(otherFont)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                VStack(alignment: .center) {
+                    Text("Weekdays:")
+                    Text("\(Int(weekdayPositivePercentage))%").lineLimit(1)
+                }
+                .font(otherFont)
+                .frame(maxWidth: .infinity, alignment: .center)
+                                    
+                VStack(alignment: .trailing) {
+                    Text("Weekends:")
+                    Text("\(Int(weekendPositivePercentage))%").lineLimit(1)
+                }
+                .font(otherFont)
+                .frame(maxWidth: .infinity, alignment: .trailing)
             }
             .padding()
-        }
-        Section {
             LongHistoryChartView(answers: lastSixMonthsAnswers, monthYearLabels: getLastSixMonthYearLabels())
         }
     }
@@ -117,8 +118,6 @@ extension Date {
 
 #Preview {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer){
-        List {
-            GlimpseDetailView(selectedQuestion: .preview)
-        }
+        GlimpseDetailView(selectedQuestion: .preview)
     }
 }
